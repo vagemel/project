@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+    <h5>Добавиление пользователя</h5>
+    {{ error }}
+    <form method="post" action="/user-add/">
+        <label for="name">Имя</label>
+        <input name="name">
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}

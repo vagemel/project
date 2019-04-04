@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% block content %}
+    <h5>Счета</h5>
+    <table class="table">
+        <thead>
+            <th>Действие</th>
+            <th>Id</th>
+            <th>Плательщик</th>
+            <th>Счет</th>
+            <th>Сумма</th>
+            <th>Должники</th>
+        </thead>
+        <tbody>
+             {% for invoice in invoices %}
+                 <tr>
+                    <td><a href="/invoice-delete/{{ invoice.id }}">Удалить</a></td>
+                    <td>{{ invoice.id }}</td>
+                    <td>{{ invoice.user.name }}</td>
+                    <td>{{ invoice.name  }}</td>
+                    <td>{{ invoice.sum  }}</td>
+                    <td>
+                        <table>
+                            {% for debtor in invoice.debtor_set.all %}
+                                <tr>
+                                    <td><a href="/debtor-delete/{{ debtor.id }}">Удалить</a></td>
+                                    <td>{{ debtor.user.name }} (должен {{ debtor.sum }})</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <a href="/debtor-add/{{ invoice.id }}">Добавить должника</a>
+                    </td>
+                 </tr>
+             {% empty %}
+                 <tr><td>Данные отсутствуют</td></tr>
+             {% endfor %}
+        </tbody>
+    </table>
+    <td><a href="/invoice-add/">Добавить счет</a></td>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block content %}
+    <h5>Пользователи</h5>
+    <table class="table">
+        <thead>
+            <th>Действие</th>
+            <th>Номер</th>
+            <th>Пользователь</th>
+            <th>Баланс</th>
+        </thead>
+        <tbody>
+             {% for user in users %}
+                 <tr>
+                    <td><a href="/user-delete/{{ user.id }}">Удалить</a></td>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name  }}</td>
+                    <td>{{ user.balance }}</td>
+                 </tr>
+             {% empty %}
+                 <tr><td>Данные отсутствуют</td></tr>
+             {% endfor %}
+        </tbody>
+    </table>
+    <td><a href="/user-add/">Добавить пользователя</a></td>
+{% endblock %}

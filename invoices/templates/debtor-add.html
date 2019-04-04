@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% block content %}
+    <h5>Добавление должника</h5>
+    {{ error }}
+    <form method="post" >
+
+        {{ debtor_form }}
+        <br />
+        <button type="submit">Добавить должника</button>
+    </form>
+{% endblock %}
